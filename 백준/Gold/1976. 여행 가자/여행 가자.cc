@@ -17,13 +17,6 @@ void unionparent(int a, int b) {
 	else parent[a] = b;
 }
 
-bool findparent(int a, int b) {
-	a = getparent(a);
-	b = getparent(b);
-	if (a == b)return true;
-	return false;
-}
-
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(0);
@@ -45,7 +38,7 @@ int main() {
 	}
 	bool flag = true;
 	for (int i = 1; i < city.size(); i++) {
-		if (!findparent(city[0],city[i])) {
+		if (parent[city[0]] != parent[city[i]]) {
 			flag = false; break;
 		}
 	}
