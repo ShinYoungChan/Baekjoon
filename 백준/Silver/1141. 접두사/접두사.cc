@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <unordered_set>
 #include <algorithm>
 
 using namespace std;
@@ -14,7 +13,7 @@ int main() {
 		cin >> v[i];
 	}
 	sort(v.begin(), v.end());
-	unordered_set<string> str;
+	int cnt = 0;
 	for (int i = 0; i < v.size(); i++) {
 		bool flag = true;
 		for (int j = i + 1; j < v.size(); j++) {
@@ -24,8 +23,8 @@ int main() {
 			}
 			else break;
 		}
-		if (flag) str.insert(v[i]);
+		if (flag) cnt++;
 	}
-	printf("%d\n", str.size());
+	printf("%d\n", cnt);
 	return 0;
 }
