@@ -27,14 +27,12 @@ void dfs(int count, int x, int y) {
 	if (check()) {
 		if (ans > count) ans = count; return;
 	}
-	for (int i = x; i <= h; i++) {
-		for (int j = y; j < n * 2 - 2; j++) {
-			if (j & 1) {
-				if (map[i][j] == 0 && map[i][j - 2] == 0 && map[i][j + 2] == 0) {
-					map[i][j] = 1;
-					dfs(count + 1, i, j);
-					map[i][j] = 0;
-				}
+	for (int i = x; i < h; i++) {
+		for (int j = y; j < n * 2 - 2; j+=2) {
+			if (map[i][j] == 0 && map[i][j - 2] == 0 && map[i][j + 2] == 0) {
+				map[i][j] = 1;
+				dfs(count + 1, i, j);
+				map[i][j] = 0;
 			}
 		}
 		y = 1;
@@ -49,7 +47,7 @@ int main() {
 		map[a - 1][b * 2 - 1] = 1;
 	}
 	ans = 4;
-	dfs(0, 0, 0);
+	dfs(0, 0, 1);
 	if (ans == 4) ans = -1;
 	printf("%d\n", ans);
 	return 0;
