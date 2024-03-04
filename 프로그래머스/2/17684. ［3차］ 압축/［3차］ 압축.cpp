@@ -9,6 +9,7 @@ vector<int> solution(string msg) {
     vector<int> answer;
     map<string, int> word;
     for(char i = 'A'; i<='Z';i++){
+        //1~26
         string str = "";
         str += i;
         word[str] = i-'A' + 1;
