@@ -1,9 +1,9 @@
 #include <iostream>
-#include <unordered_set>
 
 using namespace std;
 
 int map[10][10];
+bool visit[10];
 int N, K;
 int ans = 2100000000;
 
@@ -18,16 +18,16 @@ void floyd() {
 	}
 }
 
-void dfs(unordered_set<int> us, int sum, int idx) {
-	if (us.size() == N) {
+void dfs(int idx, int sum, int cnt) {
+	if (cnt == N) {
 		if (ans > sum) ans = sum;
 		return;
 	}
 	for (int i = 0; i < N; i++) {
-		if (us.count(i) == 0) {
-			us.insert(i);
-			dfs(us, sum + map[idx][i], i);
-			us.erase(i);
+		if (!visit[i]) {
+			visit[i] = true;
+			dfs(i, sum + map[idx][i], cnt + 1);
+			visit[i] = false;
 		}
 	}
 }
@@ -42,10 +42,9 @@ int main() {
 			cin >> map[i][j];
 		}
 	}
-	unordered_set<int> us;
-	us.insert(K);
 	floyd();
-	dfs(us, 0, K);
+	visit[K] = true;
+	dfs(K, 0, 1);
 	cout << ans << "\n";
 	return 0;
 }
