@@ -33,6 +33,9 @@ void dfs(unordered_set<int> us, int sum, int idx) {
 }
 
 int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 	cin >> N >> K;
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
@@ -43,6 +46,6 @@ int main() {
 	us.insert(K);
 	floyd();
 	dfs(us, 0, K);
-	printf("%d\n", ans);
+	cout << ans << "\n";
 	return 0;
 }
