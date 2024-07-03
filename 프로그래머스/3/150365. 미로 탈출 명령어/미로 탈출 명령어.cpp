@@ -14,6 +14,7 @@ int getDist(int x1, int y1, int x2, int y2){
 void dfs(int n, int m, int x,int y, int r,int c, int k, int cnt, string str){
     if(ans.size()>0)return;
     if(k-cnt<getDist(x,y,r,c))return;
+    if((k-cnt-getDist(x,y,r,c))%2!=0)return;
     if(x==r&&y==c&&cnt==k){
         ans = str;
         return;
@@ -23,7 +24,6 @@ void dfs(int n, int m, int x,int y, int r,int c, int k, int cnt, string str){
         int nx = x+dxdy[i][0];
         int ny = y+dxdy[i][1];
         if(nx<0||nx>n-1||ny<0||ny>m-1)continue;
-        if((k-cnt-1-getDist(nx,ny,r,c))%2!=0)continue;
         dfs(n,m,nx,ny,r,c,k,cnt+1,str+ch[i]);
     }
 }
