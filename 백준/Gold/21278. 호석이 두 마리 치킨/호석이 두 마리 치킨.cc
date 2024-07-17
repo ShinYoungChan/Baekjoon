@@ -24,16 +24,14 @@ void floydwarshall(vector<vector<int>>& v, int n) {
 
 void distCalc(vector<vector<int>> v, int n) {
 	vector<bool> comb(n, false);
-	for (int i = comb.size() - 1; i >= comb.size() - 2; i--) {
-		if (i < 0)break;
+	for (int i = 0; i < 2; i++) {
 		comb[i] = true;
 	}
 	int ans = INF;
 	vector<int> dNum(2, INF);
 	do {
-		int dist = 0;
+		int dist = 0, idx = 0;
 		vector<int> d(2);
-		int idx = 0;
 		for (int i = 0; i < comb.size(); i++) {
 			if (comb[i]) {
 				d[idx++] = i;
@@ -49,8 +47,9 @@ void distCalc(vector<vector<int>> v, int n) {
 			dNum[0] = d[0];
 			dNum[1] = d[1];
 		}
-	} while (next_permutation(comb.begin(), comb.end()));
-	printf("%d %d %d\n", dNum[0], dNum[1], ans);
+	} while (prev_permutation(comb.begin(), comb.end()));
+
+	printf("%d %d %d\n", dNum[0] + 1, dNum[1] + 1, ans);
 }
 
 int main() {
